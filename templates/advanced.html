@@ -1,0 +1,228 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Password Generator</title>
+        <style>
+            .container {
+                margin: 20px;
+                font-family: Arial, sans-serif;
+                width: 50%
+            }
+            .output-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                font-size: 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            select {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            button {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            img {
+            width: 22%%
+            }
+@media screen and (max-width: 768px) {
+        div {
+            flex: 1 1 48%;  /* Columns will take up 48% of the width */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        select {
+            width: 100%
+        }
+        button {
+            width: 100%
+        }
+        div {
+            flex: 1 1 100%;  /* On small screens, columns will stack vertically */
+        }
+        img {
+        width: 100%
+        }
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1><a href="/">Password Generator</a></h1>
+	    <a href="/easy"><button>Easy Mode</button></a>
+            <h3>Inspired by <a href="https://xkcd.com/936/">XKCD</a></h3>
+
+            <p>Select a separator and copy the result:</p>
+            <textarea id="wordBox" class="output-box" >{{ delimiter.join(words) }}</textarea>
+            <br>
+                    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+                    {{ crack }}
+    </div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        
+
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <select id="separator" onchange="updateWords()">
+                <option value="-">Delimiter</option>
+                <option value="-">Dash (-)</option>
+                <option value="">No Separator</option>
+                <option value=" ">Space ( )</option>
+                {% if delimiter %}<option value="{{delimiter}}">{{delimiter}}</option>{% endif %}
+
+            </select>
+    </div>
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    <select id="caseOption" onchange="updateCase()">
+                <option value="lower" selected>Case</option>
+
+                <option value="lower">All Lower</option>
+                <option value="upper">All Upper</option>
+                <option value="upper-lower">Upper Lower</option>
+                <option value="lower-upper">Lower Upper</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <form method="get">
+
+                <select name="num_words" onchange="this.form.submit()">
+                                            <option value="{{ current_num_words }}" selected>{{ current_num_words }} words</option>
+                    {% for i in range(3, 11) %}
+                        <option value="{{ i }}" >{{ i }}</option>
+                    {% endfor %}
+                </select>
+    </div>
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    <!--             <select name="word_length" onchange="this.form.submit()">
+                    {% if word_length == "0" %}
+                    <option value="{{word_length}}" selected>Random # letters</option>
+                    {% else %}
+                    <option value="{{word_length}}" selected>{{word_length}} letters</option>
+                    {% endif %}
+                    {% for i in range(4, 10) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                        <option value="0" >Random</option>
+
+                </select>
+    -->
+  <select name="min_word_length" onchange="this.form.submit()">
+                    {% if min_word_length == "0" %}
+                    <option value="{{min_word_length}}" selected>Random # Min</option>
+                    {% else %}
+                    <option value="{{min_word_length}}" selected>{{min_word_length}}</option>
+                    {% endif %}
+                    {% for i in range(3, 10) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+
+                </select>
+		to 
+  <select name="max_word_length" onchange="this.form.submit()">
+                    {% if max_word_length == "0" %}
+                    <option value="{{max_word_length}}" selected>Random # Max</option>
+                    {% else %}
+                    <option value="{{max_word_length}}" selected>{{max_word_length}}</option>
+                    {% endif %}
+                    {% for i in range(4, 10) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+
+                </select>
+		letters
+
+
+    </div>
+ <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+                 <select name="lang" onchange="this.form.submit()">
+                    <option value="{{lang}}" selected>{{lang}}</option>
+                    {% for i in languages %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+
+                </select>
+
+    </div>
+
+            </form>
+
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <button onclick="copyToClipboard()">Copy</button>
+        </div>
+
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+                <form method="get">
+            <input name="min_word_length" value="{{ min_word_length}}" hidden>
+            <input name="max_word_length" value="{{ max_word_length}}" hidden>
+
+            <input name="word_length" value="{{ word_length}}" hidden>
+            <input name="num_words" value="{{ current_num_words}}" hidden>
+
+            <button onclick="this.form.submit()">Refresh</button>
+                    </form>
+
+        </div>
+
+
+        </div>
+
+        <script>
+            const originalWords = {{ words|tojson }};
+            
+            function updateWords() {
+                const separator = document.getElementById("separator").value;
+                const wordBox = document.getElementById("wordBox");
+                wordBox.value = originalWords.join(separator);
+            }
+
+    function copyToClipboard() {
+        const wordBox = document.getElementById("wordBox");
+        wordBox.select();  // Select the text in the field/
+        wordBox.setSelectionRange(0, 99999); // For mobile compatibility
+        document.execCommand("copy"); // Copy the text to the clipboard
+        alert("Copied to clipboard: " + wordBox.value); // Optional: Notify the user
+    }
+
+        function updateCase() {
+        const caseOption = document.getElementById("caseOption").value;
+        const wordBox = document.getElementById("wordBox");
+        const originalWords = {{ words|tojson }};
+        let updatedWords;
+
+        switch (caseOption) {
+            case "upper":
+                updatedWords = originalWords.map(word => word.toUpperCase());
+                break;
+            case "lower":
+                updatedWords = originalWords.map(word => word.toLowerCase());
+                break;
+            case "upper-lower":
+                updatedWords = originalWords.map((word, idx) =>
+                    idx % 2 === 0 ? word.toUpperCase() : word.toLowerCase()
+                );
+                break;
+            case "lower-upper":
+                updatedWords = originalWords.map((word, idx) =>
+                    idx % 2 === 0 ? word.toLowerCase() : word.toUpperCase()
+                );
+                break;
+            case "random":
+                updatedWords = originalWords.map(word =>
+                    Math.random() > 0.5 ? word.toUpperCase() : word.toLowerCase()
+                );
+                break;
+        }
+
+        wordBox.value = updatedWords.join("-");
+    }
+
+        </script>
+    </body>
+    </html>

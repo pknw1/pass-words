@@ -1,0 +1,60 @@
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <select id="separator" onchange="updateWords()">
+                <option value="-">Delimiter</option>
+                <option value="-">Dash (-)</option>
+                <option value="">No Separator</option>
+                <option value=" ">Space ( )</option>
+                {% if delimiter %}<option value="{{delimiter}}">{{delimiter}}</option>{% endif %}
+
+            </select>
+    </div>
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    <select id="caseOption" onchange="updateCase()">
+                <option value="lower" selected>Case</option>
+
+                <option value="lower">All Lower</option>
+                <option value="upper">All Upper</option>
+                <option value="upper-lower">Upper Lower</option>
+                <option value="lower-upper">Lower Upper</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+	                <form method="get">
+
+
+                <select name="num_words" onchange="this.form.submit()">
+                                            <option value="{{ current_num_words }}" selected>{{ current_num_words }} words</option>
+                    {% for i in range(3, 11) %}
+                        <option value="{{ i }}" >{{ i }}</option>
+                    {% endfor %}
+                </select>
+    </div>
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+  <select name="min_word_length" onchange="this.form.submit()">
+                    {% if min_word_length == "0" %}
+                    <option value="{{min_word_length}}" selected>Random # Min</option>
+                    {% else %}
+                    <option value="{{min_word_length}}" selected>{{min_word_length}}</option>
+                    {% endif %}
+                    {% for i in range(3, 10) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+
+                </select>
+		to 
+  <select name="max_word_length" onchange="this.form.submit()">
+                    {% if max_word_length == "0" %}
+                    <option value="{{max_word_length}}" selected>Random # Max</option>
+                    {% else %}
+                    <option value="{{max_word_length}}" selected>{{max_word_length}}</option>
+                    {% endif %}
+                    {% for i in range(4, 10) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+
+                </select>
+		letters
+    </div>
+
+

@@ -1,0 +1,359 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Password Generator</title>
+        <style>
+            .container {
+                margin: 20px;
+                font-family: Arial, sans-serif;
+                width: 50%
+            }
+            .output-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                font-size: 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            select {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            button {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            img {
+            width: 22%%
+            }
+	    .instructions {
+		    width:49%
+	    }
+	    .common {
+		    width:100%
+	    }
+@media screen and (max-width: 768px) {
+        div {
+            flex: 1 1 48%;  /* Columns will take up 48% of the width */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+            .instructions {
+                    width:100%
+            }
+        select {
+            width: 100%
+        }
+        button {
+            width: 100%
+        }
+        div {
+            flex: 1 1 100%;  /* On small screens, columns will stack vertically */
+        }
+        img {
+        width: 100%
+        }
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2><a href="/">Password Generator</a></h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+	    <a href="/easy"><button>Easy Mode</button></a>
+    </div>
+
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+	    <a href="/advanced"><button>Advanced Mode</button></a>
+    </div>
+    </div>
+
+	    <h3>Inspired by <a href="https://xkcd.com/936/">XKCD</a></h3>
+
+        <textarea id="wordBox" class="output-box" >random-words-of-varying-length</textarea>
+            <br>
+                    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    </div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <div class="common" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h2><a href="/easy"></a></h2>
+	    <p>Password Generator allows you to generate a password consisting of multiple words and estimate how long a dictionary attack would take to crack it.</p>
+           <p>You can customise how many words are used, how they are delimited, whether to apply combinations of upper and lower case words, plus minimum and maximum lengths of words to accept</p>
+	   <details>
+
+    <summary>Options and Defaults info </summary>
+
+
+    <table>
+        <tr>
+            <th>Setting</th>
+            <th>Info</th>
+            <th>Default (Easy)</th>
+            <th>Default (Advanced)</th>
+            <th>Options</th>
+            <th>cli</th>
+        </tr>
+        <tr>
+            <td>Delimiter</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Case</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Words</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Min Charachters</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Max Charachters</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Language</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Copy</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Refresh</td>
+            <td></td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+            <td>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </td>
+            <td>
+                <code>
+                </code>
+            </td>
+        </tr>
+        </table>
+</details>
+
+    </div>
+</div>
+
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+    <div class="instructions" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h2><a href="/easy">Easy Mode</a></h2>
+            <p>In Easy Mode, the dictionary used to find random words is limited to the following lists
+		<ul>
+			<li><a href="https://7esl.com/common-words/">7ESL - 1000+ Most Common Words in English from A-Z</a></li>
+		</ul>
+	    </p>
+
+    </div>
+
+    <div class="instructions" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h1><a href="/advanced">Advanced Mode</a></h1>
+	    <p>In Advanced Mode, the dictionary used to find random words is sourced via <a href="https://github.com/RazorSh4rk/random-word-api/">Random Word API</a> and has the following language options
+                <ul>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/words.json">English - 178189 words (default)</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/de.json">German - 171151 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/es.json">French - 336530 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/fr.json">Spanish - 108990 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/it.json">Italian - 279896 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/zh.json">Chinese - 171649 Words</a></li>
+
+                </ul>
+            </p>
+            <p></p>
+
+    </div>
+    </div>
+
+        </div>
+
+    </body>
+    </html>
