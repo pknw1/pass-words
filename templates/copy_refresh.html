@@ -1,0 +1,16 @@
+
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <button onclick="copyToClipboard()">Copy</button>
+        </div>
+
+    <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <form method="get">
+            <input name="min_word_length" value="{{ min_word_length}}" hidden>
+            <input name="max_word_length" value="{{ max_word_length}}" hidden>
+            <input name="num_words" value="{{ current_num_words}}" hidden>
+
+            <button onclick="this.form.submit()">Refresh</button>
+            </form>
+
+        </div>
+

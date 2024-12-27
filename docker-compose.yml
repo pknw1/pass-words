@@ -1,0 +1,16 @@
+services:
+  pwgen:
+    image: pknw1/pwgen
+    networks:
+      - proxy
+    container_name: pwgen
+    hostname: pwgen
+    environment:
+      - VIRTUAL_HOST=pwgen2.pknw1.co.uk
+      - VIRTUAL_PORT=5000
+
+
+networks:
+  proxy:
+    external: true
+    name: proxy

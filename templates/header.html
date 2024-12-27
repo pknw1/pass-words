@@ -1,0 +1,136 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Password Generator</title>
+        <style>
+	.header {
+		padding-top: 30px;
+                margin: 20px;
+                font-family: Arial, sans-serif;
+                width: 50%;
+                padding-left: 24%;
+	}
+            .container {
+                margin: 20px;
+                font-family: Arial, sans-serif;
+                width: 50%;
+		padding-left: 24%;
+
+            }
+            .output-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                font-size: 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            select {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+	    .button {
+                margin-top: 10px !important;
+                padding: 5px !important ;
+                font-size: 14px !important;
+            }
+            button {
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            img {
+            width: 22%%
+            }
+	    .instructions {
+		    width:49%
+	    }
+	    .common {
+		    width:100%
+	    }
+@media screen and (max-width: 768px) {
+        div {
+            flex: 1 1 48%;  /* Columns will take up 48% of the width */
+        }
+	     .container {
+                margin: 20px;
+                font-family: Arial, sans-serif;
+                font-size: 32px;
+                width: 100%;
+            }
+            .output-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                font-size: 32px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+  .instructions {
+                    width:100%
+            }
+        select {
+            width: 100%
+        }
+        button {
+            width: 100%
+        }
+
+   
+    }
+
+    @media screen and (max-width: 480px) {
+            .instructions {
+                    width:100%
+            }
+        select {
+            width: 100%
+        }
+        button {
+            width: 100%
+        }
+        div {
+            flex: 1 1 100%;  /* On small screens, columns will stack vertically */
+        }
+        img {
+        width: 100%;
+        }
+         .container {
+                margin: 20px;
+                font-family: Arial, sans-serif;
+		font-size: 32px;
+                width: 100%;
+            }
+            .output-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                font-size: 32px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div  class="header">
+            <h2><a href="/">Password Generator</a></h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+	    <a href="/easy"><button class="button">Easy Mode</button></a>
+    </div>
+
+    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+	    <a href="/advanced"><button class="button">Advanced Mode</button></a>
+    </div>
+    </div>
+
+	    <h3>Inspired by <a href="https://xkcd.com/936/">XKCD</a></h3>
+</div>
+
+

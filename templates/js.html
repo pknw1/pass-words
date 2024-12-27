@@ -1,0 +1,52 @@
+        <script>
+            const originalWords = {{ words|tojson }};
+            
+            function updateWords() {
+                const separator = document.getElementById("separator").value;
+                const wordBox = document.getElementById("wordBox");
+                wordBox.value = originalWords.join(separator);
+            }
+
+    function copyToClipboard() {
+        const wordBox = document.getElementById("wordBox");
+        wordBox.select();  // Select the text in the field/
+        wordBox.setSelectionRange(0, 99999); // For mobile compatibility
+        document.execCommand("copy"); // Copy the text to the clipboard
+        alert("Copied to clipboard: " + wordBox.value); // Optional: Notify the user
+    }
+
+        function updateCase() {
+        const caseOption = document.getElementById("caseOption").value;
+        const wordBox = document.getElementById("wordBox");
+        const originalWords = {{ words|tojson }};
+        let updatedWords;
+
+        switch (caseOption) {
+            case "upper":
+                updatedWords = originalWords.map(word => word.toUpperCase());
+                break;
+            case "lower":
+                updatedWords = originalWords.map(word => word.toLowerCase());
+                break;
+            case "upper-lower":
+                updatedWords = originalWords.map((word, idx) =>
+                    idx % 2 === 0 ? word.toUpperCase() : word.toLowerCase()
+                );
+                break;
+            case "lower-upper":
+                updatedWords = originalWords.map((word, idx) =>
+                    idx % 2 === 0 ? word.toLowerCase() : word.toUpperCase()
+                );
+                break;
+            case "random":
+                updatedWords = originalWords.map(word =>
+                    Math.random() > 0.5 ? word.toUpperCase() : word.toLowerCase()
+                );
+                break;
+        }
+
+        wordBox.value = updatedWords.join("-");
+    }
+
+        </script>
+

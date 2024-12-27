@@ -1,0 +1,24 @@
+{% include 'header.html' %}
+{% include 'display_box.html' %}
+<div class="container">
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        
+{% include 'options.html' %}
+
+  <div style=" padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    <select name="lang" onchange="this.form.submit()">
+      <option value="{{lang}}" selected>{{lang}}</option>
+      {% for i in languages %}
+        <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+</form>
+
+{% include 'copy_refresh.html' %}
+</div>
+</div>
+
+{% include 'js.html' %}
+{% include 'footer.html' %}

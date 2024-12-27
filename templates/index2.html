@@ -1,0 +1,53 @@
+{% include 'header.html' %}
+
+        <div class="container">
+
+        <textarea id="wordBox" class="output-box" >random-words-of-varying-length</textarea>
+            <br>
+                    <div style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+    </div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <div class="common" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h2><a href="/easy"></a></h2>
+	    <p>Password Generator allows you to generate a password consisting of multiple words and estimate how long a dictionary attack would take to crack it.</p>
+           <p>You can customise how many words are used, how they are delimited, whether to apply combinations of upper and lower case words, plus minimum and maximum lengths of words to accept</p>
+
+	   {% include 'options_expand.html' %}
+    </div>
+</div>
+        </div>
+
+        <div class="container">
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+    <div class="instructions" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h2><a href="/easy">Easy Mode</a></h2>
+            <p>In Easy Mode, the dictionary used to find random words is limited to the following lists
+		<ul>
+			<li><a href="https://7esl.com/common-words/">7ESL - 1000+ Most Common Words in English from A-Z</a></li>
+		</ul>
+	    </p>
+
+    </div>
+
+    <div class="instructions" style="padding: 10px; border: 0px solid #ccc; box-sizing: border-box;">
+            <h1><a href="/advanced">Advanced Mode</a></h1>
+	    <p>In Advanced Mode, the dictionary used to find random words is sourced via <a href="https://github.com/RazorSh4rk/random-word-api/">Random Word API</a> and has the following language options
+                <ul>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/words.json">English - 178189 words (default)</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/de.json">German - 171151 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/es.json">French - 336530 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/fr.json">Spanish - 108990 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/it.json">Italian - 279896 Words</a></li>
+                        <li><a href="https://github.com/RazorSh4rk/random-word-api/blob/master/languages/zh.json">Chinese - 171649 Words</a></li>
+
+                </ul>
+            </p>
+            <p></p>
+
+    </div>
+    </div>
+
+        </div>
+{% include 'footer.html' %}
